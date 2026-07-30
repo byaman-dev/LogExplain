@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logexplain"
+version = "0.1.0"
+description = "Understand security logs in plain English."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+
+authors = [
+    { name = "Aman Kumar" }
+]
+
+keywords = [
+    "cybersecurity",
+    "windows",
+    "event-logs",
+    "education",
+    "security",
+    "soc",
+    "cli",
+    "python"
+]
+
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: Information Technology",
+    "Topic :: Security",
+    "Topic :: Education",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License"
+]
+
+dependencies = [
+    "typer>=0.16",
+    "rich>=14.0",
+    "pydantic>=2.11",
+    "PyYAML>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/byaman-dev/LogExplain"
+Repository = "https://github.com/byaman-dev/LogExplain"
+Issues = "https://github.com/byaman-dev/LogExplain/issues"
+
+[project.scripts]
+logexplain = "logexplain.cli:app"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

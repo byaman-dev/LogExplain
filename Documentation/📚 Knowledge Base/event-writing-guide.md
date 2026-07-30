@@ -1,203 +1,324 @@
 # ✍️ Event Writing Guide
 
-> Guidelines and standards for writing clear, consistent, and educational security event explanations for LogExplain.
+> Guidelines for writing clear, consistent, and educational security event explanations that teach readers **how to think like a security analyst**, not simply what an event means.
 
 ![Project](https://img.shields.io/badge/Project-LogExplain-blue?style=for-the-badge)
 ![Category](https://img.shields.io/badge/Category-Writing%20Guide-success?style=for-the-badge)
 ![Document](https://img.shields.io/badge/Document-Contributor%20Guide-purple?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-0.1-lightgrey?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0-lightgrey?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen?style=for-the-badge)
 
 ---
 
 # 📖 Purpose
 
-LogExplain is an educational project.
+LogExplain is an educational cybersecurity project.
 
-Its goal is not simply to describe security events, but to teach beginners how an experienced security analyst would understand and investigate them.
+Its goal is not to create another Event ID reference or reproduce vendor documentation. Instead, it helps readers understand security events through reasoning, investigation, and practical thinking.
 
-This guide defines the writing standards that keep every event explanation accurate, approachable, and consistent.
+This guide defines the writing standards that keep every knowledge base entry accurate, approachable, and consistent.
 
----
-
-# 🎯 Writing Goals
-
-Every event explanation should:
-
-* 📚 Teach rather than define.
-* 🧠 Develop analytical thinking.
-* 🔍 Encourage investigation.
-* 🤝 Be accessible to beginners.
-* 📖 Remain technically accurate.
-* 🔄 Follow a consistent structure.
-
-The objective is to help readers understand both **what happened** and **how to think about it**.
+It is intended for anyone contributing new security events or improving existing explanations.
 
 ---
 
-# 🧭 The Eight-Question Framework
+# 🎯 Writing Philosophy
 
-Every event explanation in LogExplain follows the same educational structure.
+Every LogExplain event should help readers answer three questions:
 
-## 1. What Happened?
+* **What happened?**
+* **Why does it matter?**
+* **How should I investigate it?**
 
-Describe the event in plain English.
+More importantly, every explanation should encourage readers to think critically rather than memorise facts.
 
-Assume the reader has never seen the event before.
-
----
-
-## 2. Why Did It Happen?
-
-Explain why the operating system, application, or service generated the event.
-
-Provide context rather than simply repeating the event description.
+> **Core Principle**
+>
+> **LogExplain does not tell readers what to think. It teaches them how to think.**
 
 ---
 
-## 3. Should I Worry?
+# 📝 Follow the Event Standard
 
-Help readers judge whether the event is usually:
+Every knowledge base entry **must** follow the **LogExplain Event Standard v1.0**.
 
-* Informational
-* Expected
-* Suspicious
-* Potentially malicious
+The Event Standard defines:
 
-Avoid absolute answers whenever possible.
+* Required sections
+* Document structure
+* Educational flow
+* Consistent formatting
 
-Context matters.
-
----
-
-## 4. Why Should I Care?
-
-Explain why the event is important during security monitoring or investigations.
-
-Focus on practical significance rather than technical details alone.
+This guide explains **how to write each section**, while the Event Standard defines **what every event contains**.
 
 ---
 
-## 5. What Can I Do?
+# ✍️ General Writing Principles
 
-Suggest reasonable next steps.
+When writing for LogExplain, always aim to be:
+
+* 📚 Educational
+* 🧠 Analytical
+* 🤝 Beginner-friendly
+* 🎯 Practical
+* 🔍 Objective
+* 📖 Technically accurate
+
+Explain concepts before introducing technical terminology whenever possible.
+
+Assume the reader is motivated to learn but may have little or no prior experience with security logs.
+
+---
+
+# 🧩 Writing Each Section
+
+## 📖 Event Summary
+
+The Event Summary introduces the event in plain English.
+
+A good summary should:
+
+* Explain the event in two or three concise paragraphs.
+* Avoid unnecessary technical language.
+* Give readers enough context before exploring the details.
+
+Avoid copying vendor documentation.
+
+Rewrite information using your own words.
+
+---
+
+## 🧠 Understanding the Event
+
+This section explains what the event represents and why it occurs.
+
+Describe:
+
+* What generated the event.
+* Why the operating system or application created it.
+* Common legitimate situations.
+* Possible security-related situations.
+
+Remember that identical events may occur during both normal operation and malicious activity.
+
+---
+
+## ⚖️ Context Matters
+
+One of the most important sections in LogExplain.
+
+Never encourage readers to make conclusions based on a single event.
+
+Instead, explain:
+
+* Situations where the event is expected.
+* Situations where additional investigation is appropriate.
+* Why surrounding context changes the interpretation.
+
+Avoid statements such as:
+
+* "This event is malicious."
+* "This always indicates an attack."
+
+Instead, write:
+
+> This event may warrant further investigation depending on the surrounding activity and available evidence.
+
+---
+
+## 🔍 Investigation Guide
+
+Teach readers how experienced analysts investigate the event.
+
+Present investigation as a logical process rather than a checklist of isolated actions.
+
+Guide readers towards useful sources of evidence.
 
 Examples include:
 
-* Reviewing related logs
-* Verifying user activity
-* Confirming expected behaviour
-* Escalating unusual findings
-
-Recommendations should remain educational rather than procedural.
-
----
-
-## 6. Where Should I Investigate?
-
-Guide readers toward useful evidence.
-
-Examples include:
-
-* Related Event IDs
-* Authentication logs
-* Process activity
+* Related security events
+* User accounts
+* Host information
 * Network activity
-* System configuration
+* Process activity
+* Authentication history
 
-Teach where additional context can be found.
-
----
-
-## 7. Think Like an Analyst
-
-This is the educational heart of LogExplain.
-
-Encourage readers to ask questions such as:
-
-* Does this event fit the surrounding activity?
-* Is this behaviour expected?
-* What evidence supports my conclusion?
-* What additional information would increase confidence?
-
-The goal is to develop reasoning rather than memorisation.
+The goal is to demonstrate investigation methodology rather than provide incident response procedures.
 
 ---
 
-## 8. Learn More
+## 📋 Investigation Checklist
 
-Provide trustworthy references for readers who want to continue learning.
+Provide practical questions that encourage systematic investigation.
 
-Prefer official documentation whenever possible.
+Checklist items should help readers gather evidence before reaching conclusions.
 
----
+Examples:
 
-# ✍️ Writing Style
+* Identify the affected account.
+* Review the originating host.
+* Examine nearby events.
+* Look for repeated activity.
+* Verify whether the behaviour is expected.
 
-Use language that is:
-
-* Professional
-* Educational
-* Friendly
-* Objective
-* Clear
-* Concise
-
-Write for understanding rather than impressing the reader.
+Avoid writing checklists that assume malicious activity.
 
 ---
 
-# 🚫 Avoid
+## 🧠 Think Like an Analyst
 
-When writing event explanations, avoid:
+This is the educational heart of every LogExplain event.
 
-* Fear-based language
-* Marketing language
-* Unexplained jargon
-* Unsupported assumptions
-* Vendor-specific bias
-* Large blocks of text
+Rather than giving answers, encourage curiosity.
 
-Whenever technical terminology is necessary, explain it clearly.
+Ask questions that help readers build analytical habits.
 
----
+Examples include:
 
-# 💡 Writing Tips
+* What evidence supports this conclusion?
+* What evidence contradicts it?
+* Is this behaviour normal for this environment?
+* Have related events been reviewed?
+* Am I making assumptions?
 
-Keep these practices in mind while writing:
+A good analyst investigates evidence before reaching conclusions.
 
-* Explain ideas before introducing technical terms.
-* Prefer short paragraphs over long ones.
-* Use examples when they improve understanding.
-* Focus on reasoning rather than memorisation.
-* Keep explanations practical and actionable.
-* Write as if mentoring someone new to cybersecurity.
+LogExplain should encourage the same mindset.
 
 ---
 
-# 📋 Quality Checklist
+## 🌍 Real-World Relevance
 
-Before submitting a new event, confirm that:
+Help readers understand why the event matters outside of a lab environment.
 
-* The explanation follows the eight-question framework.
-* Technical information is accurate.
-* The language is beginner-friendly.
-* Investigation guidance is practical.
-* Terminology is consistent.
-* Grammar and spelling have been reviewed.
+Discuss where they may encounter the event.
 
-Every contribution should leave the knowledge base clearer than before.
+Examples include:
+
+* Security Operations Centres (SOC)
+* Incident Response
+* Threat Hunting
+* Enterprise Administration
+* Digital Forensics
+* Security Monitoring
+
+Keep this section practical rather than theoretical.
+
+---
+
+## 🔗 Related Events
+
+Security events rarely exist in isolation.
+
+Explain how related events provide additional context.
+
+Whenever possible, describe the relationship instead of simply listing Event IDs.
+
+Encourage readers to correlate multiple sources of evidence.
+
+---
+
+## 📚 Continue Learning
+
+Recommend trustworthy resources that expand the reader's understanding.
+
+Prefer:
+
+* Official vendor documentation
+* MITRE ATT&CK
+* Sigma Rules
+* Industry best practices
+* Academic or technical references
+
+Do not duplicate external documentation.
+
+Instead, explain why each resource is valuable.
+
+---
+
+## 📌 Key Takeaways
+
+Summarise the event using concise, memorable points.
+
+Good takeaways reinforce understanding rather than repeat earlier sections.
+
+Readers should be able to review this section quickly before moving to the next event.
+
+---
+
+## 🌱 Learning Reflection
+
+Every LogExplain event should conclude with reflection.
+
+Rather than summarising technical details, explain what investigative mindset or security concept the reader has developed.
+
+Focus on learning rather than memorisation.
+
+---
+
+# 🎨 Writing Style
+
+Write as if mentoring someone who is new to cybersecurity.
+
+Your writing should be:
+
+* Friendly without being informal.
+* Professional without being overly academic.
+* Clear without oversimplifying technical concepts.
+* Encouraging without making assumptions about the reader's knowledge.
+
+Prefer short paragraphs.
+
+Use headings, tables, lists, and diagrams where they improve readability.
+
+---
+
+# 🚫 Common Mistakes
+
+Avoid the following:
+
+* ❌ Copying vendor documentation.
+* ❌ Large blocks of text.
+* ❌ Fear-based language.
+* ❌ Definitive conclusions without evidence.
+* ❌ Unexplained jargon.
+* ❌ Vendor-specific bias.
+* ❌ Repeating information across sections.
+
+Every section should contribute something new.
+
+---
+
+# ✅ Quality Checklist
+
+Before submitting an event, confirm that:
+
+* [ ] The event follows the LogExplain Event Standard v1.0.
+* [ ] Every section provides unique educational value.
+* [ ] Technical information has been verified.
+* [ ] The language is beginner-friendly.
+* [ ] Conclusions are evidence-based.
+* [ ] Investigation guidance encourages analytical thinking.
+* [ ] The document has been reviewed for grammar, spelling, and consistency.
+
+---
+
+# 🤝 Final Principle
+
+Every LogExplain contribution should leave readers with better questions—not just more answers.
+
+If an explanation encourages curiosity, investigation, and evidence-based reasoning, it supports the mission of the project.
 
 ---
 
 # 🔗 Related Documentation
 
-For additional information, see:
-
-* `knowledge-base-specification.md` — Knowledge base structure and file format.
-* `architecture.md` — How the application loads and presents event explanations.
-* `design-principles.md` — Educational philosophy and project principles.
-* `CONTRIBUTING.md` — General contribution guidelines.
+* `event-standard.md`
+* `knowledge-base-specification.md`
+* `design-principles.md`
+* `architecture.md`
+* `CONTRIBUTING.md`
 
 ---
 
-> *"Great security analysts don't memorise every event—they learn how to ask better questions."*
+> *"The goal of LogExplain is not to create people who recognise Event IDs. It is to help create analysts who recognise patterns, ask better questions, and investigate with evidence."*

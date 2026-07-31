@@ -4,8 +4,8 @@ Canonical data models for LogExplain.
 These models define the official structure of every
 LogExplain knowledge base entry.
 
-Every event is validated against these models before it
-can be rendered by the application.
+The knowledge base is the single source of truth.
+Renderers decide how the content is presented.
 """
 
 from typing import List
@@ -22,13 +22,13 @@ class EventInformation(BaseModel):
     """Basic metadata describing a security event."""
 
     event_id: int
-    title: str
+    event_name: str
     platform: str
+    log: str
+    event_provider: str
     category: str
-    event_source: str
-    common_tags: List[str] = Field(default_factory=list)
-
-    standard_version: str = "1.0"
+    audit_type: str
+    introduced: str
 
 
 # ============================================================================
@@ -36,119 +36,78 @@ class EventInformation(BaseModel):
 # ============================================================================
 
 
-class UnderstandingTheEvent(BaseModel):
-    """Explain what happened and why."""
+class MarkdownSection(BaseModel):
+    """
+    A complete educational section.
 
-    what_happened: str
+    The content is stored exactly as written in the
+    Markdown knowledge base.
+    """
 
-    why_it_happened: str
-
-    common_legitimate_causes: List[str] = Field(default_factory=list)
-
-    possible_security_related_causes: List[str] = Field(default_factory=list)
-
-
-class ContextMatters(BaseModel):
-    """Explain why context determines significance."""
-
-    usually_expected_when: List[str] = Field(default_factory=list)
-
-    worth_investigating_when: List[str] = Field(default_factory=list)
-
-    important_reminder: str
+    title: str
+    content: str
 
 
-class InvestigationGuide(BaseModel):
-    """Describe how an analyst should investigate the event."""
-
-    overview: str
-
-    workflow: List[str] = Field(default_factory=list)
+# ============================================================================
+# Structured Sections
+# ============================================================================
 
 
 class InvestigationChecklist(BaseModel):
-    """Questions an analyst should answer."""
+    """Investigation checklist."""
 
-    checklist: List[str] = Field(default_factory=list)
-
-
-class AnalystMindset(BaseModel):
-    """Questions that encourage analytical thinking."""
-
-    questions: List[str] = Field(default_factory=list)
-
-
-class RealWorldRelevance(BaseModel):
-    """Where and why this event matters."""
-
-    summary: str
-
-    examples: List[str] = Field(default_factory=list)
-
-
-# ============================================================================
-# Relationships
-# ============================================================================
+    items: List[str] = Field(default_factory=list)
 
 
 class RelatedEvent(BaseModel):
-    """A security event related to this event."""
+    """A related Windows Security Event."""
 
     event_id: int
-
-    title: str
-
+    event_name: str
     relationship: str
 
 
 class LearningResource(BaseModel):
-    """A recommended resource for continued learning."""
+    """External learning resource."""
 
     title: str
-
-    reason: str
-
+    description: str
     url: str | None = None
 
 
 class ContinueYourJourney(BaseModel):
-    """Recommended next event to study."""
+    """Recommended next event."""
 
     event_id: int
-
-    title: str
-
+    event_name: str
     reason: str
 
 
 # ============================================================================
-# Canonical Knowledge Base Entry
+# Canonical Event Model
 # ============================================================================
 
 
 class LogExplainEvent(BaseModel):
     """
     Canonical representation of a LogExplain knowledge base entry.
-
-    Every Markdown knowledge base entry should be parsed,
-    validated, and converted into this model.
     """
 
     information: EventInformation
 
-    event_summary: str
+    event_summary: MarkdownSection
 
-    understanding: UnderstandingTheEvent
+    understanding_the_event: MarkdownSection
 
-    context_matters: ContextMatters
+    context_matters: MarkdownSection
 
-    investigation_guide: InvestigationGuide
+    investigation_guide: MarkdownSection
 
     investigation_checklist: InvestigationChecklist
 
-    think_like_an_analyst: AnalystMindset
+    think_like_an_analyst: MarkdownSection
 
-    real_world_relevance: RealWorldRelevance
+    real_world_relevance: MarkdownSection
 
     related_events: List[RelatedEvent] = Field(default_factory=list)
 
@@ -156,6 +115,6 @@ class LogExplainEvent(BaseModel):
 
     key_takeaways: List[str] = Field(default_factory=list)
 
-    learning_reflection: str
+    learning_reflection: MarkdownSection
 
     continue_your_journey: ContinueYourJourney | None = None

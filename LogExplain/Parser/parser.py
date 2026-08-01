@@ -17,7 +17,9 @@ Build LogExplainEvent
 
 from __future__ import annotations
 
-from .models import LogExplainEvent
+import re
+
+from ..models import LogExplainEvent
 
 
 # ============================================================================
@@ -39,9 +41,29 @@ def extract_sections(markdown: str) -> dict[str, str]:
             "🧠 Understanding the Event": "...",
         }
     """
-    raise NotImplementedError
 
+    pattern = r"^# (.+)$"
 
+    matches = list(re.finditer(pattern, markdown, flags=re.MULTILINE))
+
+    sections: dict[str, str] = {}
+
+    for index, match in enumerate(matches):
+        title = match.group(1).strip()
+
+        start = match.end()
+
+        if index + 1 < len(matches):
+            end = matches[index + 1].start()
+        else:
+            end = len(markdown)
+
+        content = markdown[start:end].strip()
+
+        sections[title] = content
+
+    return sections
+    
 # ============================================================================
 # Section Parsers
 # ============================================================================
